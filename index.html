@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Despre noi</title>
+  <title>CarScan</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #DCDCDC;
     }
 
     .navbar {
@@ -83,6 +82,31 @@
       margin-top: 5px;
     }
 
+    .main-section {
+      height: 100vh;
+      background: url('images/main_car.jpg') no-repeat center center/cover;
+      background-color: rgba(0, 0, 0, 0.5);
+      background-blend-mode: darken;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 8vh;
+      text-align: center;
+      color: white;
+    }
+
+    .main-section h1 {
+      font-size: 2.1em;
+      margin-bottom: 6px;
+      line-height: 1.1;
+    }
+
+    .main-section p {
+      font-size: 1.3em;
+      margin: 0;
+    }
+
     .menu-title {
       font-weight: bold;
       font-size: 1.05em;
@@ -90,58 +114,6 @@
       padding: 13px 5px;
       /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
       margin-bottom: 5px;
-    }
-
-    .main-section {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 5vw;
-      gap: 60px;
-      min-height: calc(100vh - 80px);
-      box-sizing: border-box;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .text-block {
-      flex: 1;
-      min-width: 300px;
-      max-width: 500px;
-    }
-
-    .text-block h1 {
-      font-size: 2em;
-      color: #002244;
-      margin-bottom: 15px;
-    }
-
-    .text-block p {
-      font-size: 1em;
-      line-height: 1.6;
-      color: #333;
-      margin-bottom: 10px;
-    }
-
-    .text-block a {
-      color: #002244;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .image-block {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 280px;
-    }
-
-    .center-image {
-      max-width: 90%;
-      max-height: 90vh;
-      object-fit: contain;
     }
 
     /* === MENIU HAMBURGER MOBIL === */
@@ -177,6 +149,7 @@
       }
 
       .hamburger {
+        /* collapse text; we'll use ::before for icon */
         font-size: 0;
         cursor: pointer;
         position: relative;
@@ -215,6 +188,7 @@
         text-decoration: none;
         font-size: 1em;
         padding: 6px 0;
+        /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
       }
 
       .mobile-menu .menu-title {
@@ -241,45 +215,19 @@
         gap: 8px;
       }
 
+      /* slide menu in */
       #menu-toggle:checked ~ .mobile-menu {
         left: 0;
       }
 
+      /* swap icon to X */
       #menu-toggle:checked + .hamburger::before {
         content: "✕";
-      }
-
-      .main-section {
-        flex-direction: column;
-        padding: 20px;
-      }
-
-      .text-block {
-        text-align: center;
       }
     }
   </style>
 </head>
 <body>
-
-  <!-- MENIU HAMBURGER MOBIL -->
-  <div class="hamburger-menu">
-    <input type="checkbox" id="menu-toggle" />
-    <label for="menu-toggle" class="hamburger"></label>
-    <div class="mobile-menu">
-      <div class="menu-title">Produse</div>
-      <div class="submenu">
-        <div class="menu-subtitle">Autocom</div>
-        <div class="submenu">
-          <a href="Icon.html">ICON</a>
-          <!-- <a href="Classic.html">CLASSIC</a> -->
-        </div>
-      </div>
-      <div class="menu-title">
-        <a href="DespreNoi.html">Despre noi</a>
-      </div>
-    </div>
-  </div>
 
   <!-- NAVBAR -->
   <nav class="navbar">
@@ -293,6 +241,26 @@
     <div class="right"></div>
   </nav>
 
+  <!-- MENIU HAMBURGER PENTRU MOBIL -->
+  <div class="hamburger-menu">
+    <input type="checkbox" id="menu-toggle" />
+    <label for="menu-toggle" class="hamburger"></label>
+    <div class="mobile-menu">
+      <div class="menu-title">Produse</div>
+      <div class="submenu">
+        <div class="menu-subtitle">Autocom</div>
+        <div class="submenu">
+          <a href="Icon.html">ICON</a>
+          <!-- <a href="Classic.html">CLASSIC</a> -->
+        </div>
+      </div>
+        <div class="menu-title">
+          <a href="DespreNoi.html">Despre noi</a>
+        </div>
+      <!-- <a href="DespreNoi.html">Despre noi</a> -->
+    </div>
+  </div>
+
   <!-- MENIU CLICKABIL DESKTOP -->
   <div class="menu-container" id="produseMenu">
     <a class="menu-title">Autocom</a>
@@ -302,28 +270,13 @@
     </div>
   </div>
 
-  <!-- SECȚIUNE PRINCIPALĂ -->
+  <!-- PAGINA PRINCIPALA -->
   <div class="main-section">
-    <div class="text-block">
-      <h1>Bine ai venit pe Car•Scan!</h1>
-      <p>Acest site este o platformă de prezentare pentru aparate de diagnoză auto profesionale.</p>
-      <p>Suntem distribuitori autorizați de echipamente Autocom, dedicate atât pentru autoturisme, cât și pentru vehicule comerciale.</p>
-      <p>
-        Pentru mai multe detalii despre produse, ne poți contacta direct pe
-        <a href="#" target="_blank">WhatsApp,</a>
-        la numărul de telefon
-        <a href="https://wa.me/40722332057" target="_blank">0722 332 057</a>
-        sau pe
-        <a href="#" target="_blank">Facebook,</a>
-        pe pagina <a href="https://www.facebook.com/profile.php?id=100076194907256" target="_blank">Autocom Romania</a>.
-      </p>
-    </div>
-    <div class="image-block">
-      <img src="images/mecanic.png" alt="Imagine mecanic" class="center-image" />
-    </div>
+    <h1>Produse pentru diagnoză auto</h1>
+    <p>Diagnozează calea spre succes</p>
   </div>
 
-  <!-- SCRIPT MENIU -->
+  <!-- SCRIPT FUNCTIONALITATE MENIU DESKTOP -->
   <script>
     const toggleBtn = document.getElementById('produseToggle');
     const menu = document.getElementById('produseMenu');
@@ -339,5 +292,6 @@
       }
     });
   </script>
+
 </body>
 </html>
