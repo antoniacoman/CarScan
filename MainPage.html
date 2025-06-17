@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CarScan</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #002244;
+      padding: 15px 40px;
+      position: relative;
+      color: white;
+      flex-wrap: wrap;
+    }
+
+    .navbar .left,
+    .navbar .right {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .navbar .center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+      cursor: pointer;
+    }
+
+    .navbar a:hover {
+      background-color: #003366;
+    }
+
+    .navbar .center a {
+      font-size: 1.6em;
+      font-weight: bold;
+    }
+
+    .menu-container {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 40px;
+      background-color: #0b1b30;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      min-width: 200px;
+    }
+
+    .menu-container a {
+      display: block;
+      color: #ddd;
+      padding: 10px 20px;
+      text-decoration: none;
+    }
+
+    .menu-container a:hover {
+      background-color: #003366;
+      color: white;
+    }
+
+    .submenu {
+      padding-left: 20px;
+      margin-top: 5px;
+    }
+
+    .main-section {
+      height: 100vh;
+      background: url('images/main_car.jpg') no-repeat center center/cover;
+      background-color: rgba(0, 0, 0, 0.5);
+      background-blend-mode: darken;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 8vh;
+      text-align: center;
+      color: white;
+    }
+
+    .main-section h1 {
+      font-size: 2.1em;
+      margin-bottom: 6px;
+      line-height: 1.1;
+    }
+
+    .main-section p {
+      font-size: 1.3em;
+      margin: 0;
+    }
+
+    .menu-title {
+      font-weight: bold;
+      font-size: 1.05em;
+      color: white;
+      padding: 13px 5px;
+      /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
+      margin-bottom: 5px;
+    }
+
+    /* === MENIU HAMBURGER MOBIL === */
+    .hamburger-menu {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: row;
+        justify-content: center;
+        padding: 10px 20px;
+      }
+
+      .navbar .left,
+      .navbar .right {
+        display: none;
+      }
+
+      .navbar .center {
+        position: static;
+        transform: none;
+        margin: 10px auto 0;
+        order: -1;
+      }
+
+      .hamburger-menu {
+        position: absolute;
+        left: 20px;
+        top: 15px;
+        display: block;
+        z-index: 1100;
+      }
+
+      .hamburger {
+        /* collapse text; we'll use ::before for icon */
+        font-size: 0;
+        cursor: pointer;
+        position: relative;
+        z-index: 1101;
+      }
+
+      .hamburger::before {
+        content: "☰";
+        font-size: 28px;
+        color: white;
+        position: relative;
+        z-index: inherit;
+      }
+
+      #menu-toggle {
+        display: none;
+      }
+
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: -250px;
+        width: 200px;
+        height: 100%;
+        background-color: #002244;
+        padding: 60px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        transition: left 0.3s ease;
+        z-index: 1050;
+      }
+
+      .mobile-menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 1em;
+        padding: 6px 0;
+        /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
+      }
+
+      .mobile-menu .menu-title {
+        font-weight: bold;
+        font-size: 1em;
+        padding-bottom: 1px;
+        /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
+        margin-bottom: 1px;
+        color: white;
+      }
+
+      .mobile-menu .menu-subtitle {
+        font-weight: bold;
+        font-size: 1em;
+        margin-bottom: 6px;
+        padding-left: 10px;
+        color: #ddd;
+      }
+
+      .mobile-menu .submenu {
+        padding-left: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      /* slide menu in */
+      #menu-toggle:checked ~ .mobile-menu {
+        left: 0;
+      }
+
+      /* swap icon to X */
+      #menu-toggle:checked + .hamburger::before {
+        content: "✕";
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="left">
+      <a id="produseToggle">Produse</a>
+      <a href="DespreNoi.html">Despre noi</a>
+    </div>
+    <div class="center">
+      <a href="MainPage.html">Car•Scan</a>
+    </div>
+    <div class="right"></div>
+  </nav>
+
+  <!-- MENIU HAMBURGER PENTRU MOBIL -->
+  <div class="hamburger-menu">
+    <input type="checkbox" id="menu-toggle" />
+    <label for="menu-toggle" class="hamburger"></label>
+    <div class="mobile-menu">
+      <div class="menu-title">Produse</div>
+      <div class="submenu">
+        <div class="menu-subtitle">Autocom</div>
+        <div class="submenu">
+          <a href="Icon.html">ICON</a>
+          <!-- <a href="Classic.html">CLASSIC</a> -->
+        </div>
+      </div>
+        <div class="menu-title">
+          <a href="DespreNoi.html">Despre noi</a>
+        </div>
+      <!-- <a href="DespreNoi.html">Despre noi</a> -->
+    </div>
+  </div>
+
+  <!-- MENIU CLICKABIL DESKTOP -->
+  <div class="menu-container" id="produseMenu">
+    <a class="menu-title">Autocom</a>
+    <div class="submenu">
+      <a href="Icon.html">ICON</a>
+      <!-- <a href="Classic.html">CLASSIC</a> -->
+    </div>
+  </div>
+
+  <!-- PAGINA PRINCIPALA -->
+  <div class="main-section">
+    <h1>Produse pentru diagnoză auto</h1>
+    <p>Diagnozează calea spre succes</p>
+  </div>
+
+  <!-- SCRIPT FUNCTIONALITATE MENIU DESKTOP -->
+  <script>
+    const toggleBtn = document.getElementById('produseToggle');
+    const menu = document.getElementById('produseMenu');
+
+    toggleBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    window.addEventListener('click', function (e) {
+      if (!e.target.closest('#produseMenu') && e.target !== toggleBtn) {
+        menu.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
